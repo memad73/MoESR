@@ -13,7 +13,7 @@ conda activate EnsSR_env
 
 ## Datasets and pretrained models
 
-You can download all datasets (DIV2KRK, Flickr2KRK and Urban100RK) and pretrained models from the following links.
+You can download all datasets (DIV2KRK, Flickr2KRK and Urban100RK) and pretrained models from the following link:
 https://drive.google.com/drive/folders/1v7Lthkp-nLwdXGGkqolBgl5H88oNDH6l?usp=sharing
 
 ## Test on synthetic datasets
@@ -35,11 +35,12 @@ python main.py --in_dir 'path to the LR input images' --out_dir 'path to save re
 
 ## Results
 
-Our model achieves the following performance values (PSNR / SSIM) on DIV2KRK, Urban100 and NTIRE2017 datasets:
+Our model achieves the following performance values (PSNR / SSIM) on DIV2KRK, Flickr2KRK and Urban100RK datasets:
 
-| Model name         | DIV2KRK         | Urban100        | NTIRE2017        |
-| ------------------ |---------------- |---------------- | ---------------- |
-| DualSR             |  30.92 / 0.8728 |  25.04 / 0.7803 |  28.82 / 0.8045  |
+| Model name         | Scale | DIV2KRK         | Flickr2KRK      | Urban100RK       |
+| ------------------ |-------|---------------- |---------------- | ---------------- |
+| EnsSR              | x2    |  32.69 / 0.9054 |  32.95 / 0.9056 |  27.29 / 0.8448  |
+| EnsSR              | x4    |  28.48 / 0.7805 |  28.57 / 0.7795 |  23.62 / 0.6766  |
 
 ## Acknowledgement
 
