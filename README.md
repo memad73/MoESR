@@ -8,32 +8,29 @@ To install requirements:
 
 ```setup
 conda env create -f environment.yml
-conda activate dualsr_env
+conda activate EnsSR_env
 ```
 
-## Datasets
+## Datasets and pretrained models
 
-You can download datasets mentioned in the paper from the following links.
-- [DIV2KRK](http://www.wisdom.weizmann.ac.il/~vision/kernelgan/DIV2KRK_public.zip)
-- [NTIRE2017 track 2](https://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_valid_LR_unknown_X2.zip)
-- [RealSR](https://github.com/csjcai/RealSR)
+You can download all datasets (DIV2KRK, Flickr2KRK and Urban100RK) and pretrained models from the following links.
+https://drive.google.com/drive/folders/1v7Lthkp-nLwdXGGkqolBgl5H88oNDH6l?usp=sharing
 
-## Evaluation
+## Test on synthetic datasets
 
-To super-resolve an image using DualSR, put the image in 'test/LR' folder and run:
+For example to evaluate on DIV2KRK dataset:
+
 ```eval
-python main.py
+python main.py --in_dir ../datasets/DIV2KRK/lr_x2 --out_dir ../results/DIV2KRK/x2 --gt_dir ../datasets/DIV2KRK/gt --scale 2
+python main.py --in_dir ../datasets/DIV2KRK/lr_x4 --out_dir ../results/DIV2KRK/x4 --gt_dir ../datasets/DIV2KRK/gt --scale 4
 ```
 
-If you want to get PSNR values, you need to provide ground-truth image and/or ground-truth blur kernel directories:
-```eval-gt
-python main.py --gt_dir 'path to the ground-truth image' --kernel_dir 'path to the ground-truth blur kernel'
-```
-You can use argument ```--debug``` to see PSNR and loss values online during the training
+## Test on real images
+To evaluate on real-world images:
 
-To evaluate DualSR on a dataset, specify the directory that contains LR images:
 ```eval-dataset
-python main.py --input_dir 'path to the LR input images' --output_dir 'path to save results'
+python main.py --in_dir 'path to the LR input images' --out_dir 'path to save results' --scale 2 --real
+python main.py --in_dir 'path to the LR input images' --out_dir 'path to save results' --scale 4 --real
 ```
 
 ## Results
@@ -44,7 +41,6 @@ Our model achieves the following performance values (PSNR / SSIM) on DIV2KRK, Ur
 | ------------------ |---------------- |---------------- | ---------------- |
 | DualSR             |  30.92 / 0.8728 |  25.04 / 0.7803 |  28.82 / 0.8045  |
 
-All PSNR and SSIM values are calculated using 'Evaluate_PSNR_SSIM.m' script provided by [RCAN](https://github.com/yulunzhang/RCAN).
 ## Acknowledgement
 
-The code is built on [KernelGAN](https://github.com/sefibk/KernelGAN). We thank the authors  for sharing the codes.
+The code is built on [DualSR](https://github.com/memad73/DualSR) and [KernelGAN](https://github.com/sefibk/KernelGAN). We thank the authors for sharing the codes.
