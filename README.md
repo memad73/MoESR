@@ -21,6 +21,7 @@ https://drive.google.com/drive/folders/1v7Lthkp-nLwdXGGkqolBgl5H88oNDH6l?usp=sha
 For example to evaluate on DIV2KRK dataset:
 
 ```eval
+cd codes
 python main.py --in_dir ../datasets/DIV2KRK/lr_x2 --out_dir ../results/DIV2KRK/x2 --gt_dir ../datasets/DIV2KRK/gt --scale 2
 python main.py --in_dir ../datasets/DIV2KRK/lr_x4 --out_dir ../results/DIV2KRK/x4 --gt_dir ../datasets/DIV2KRK/gt --scale 4
 ```
@@ -29,6 +30,7 @@ python main.py --in_dir ../datasets/DIV2KRK/lr_x4 --out_dir ../results/DIV2KRK/x
 To evaluate on real-world images:
 
 ```eval-dataset
+cd codes
 python main.py --in_dir 'path to the LR input images' --out_dir 'path to save results' --scale 2 --real
 python main.py --in_dir 'path to the LR input images' --out_dir 'path to save results' --scale 4 --real
 ```
