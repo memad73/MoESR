@@ -1,6 +1,6 @@
-# Blind Super-Resolution using an Ensemble of Kernel-Specific Networks (EnsSR)
+# MoESR: Blind Super-Resolution using Kernel-Aware Mixture of Experts
 
-This repository is the official implementation of "Blind Super-Resolution using an Ensemble of Kernel-Specific Networks".
+This repository is the official implementation of "MoESR: Blind Super-Resolution using Kernel-Aware Mixture of Experts".
 
 ## Requirements
 
@@ -8,7 +8,7 @@ To install requirements:
 
 ```setup
 conda env create -f environment.yml
-conda activate EnsSR_env
+conda activate MoESR_env
 ```
 
 ## Datasets and pretrained models
@@ -41,8 +41,8 @@ Our model achieves the following performance values (PSNR / SSIM) on DIV2KRK, Fl
 
 | Model name         | Scale | DIV2KRK         | Flickr2KRK      | Urban100RK       |
 | ------------------ |-------|---------------- |---------------- | ---------------- |
-| EnsSR              | x2    |  32.69 / 0.9054 |  32.95 / 0.9056 |  27.29 / 0.8448  |
-| EnsSR              | x4    |  28.48 / 0.7805 |  28.57 / 0.7795 |  23.62 / 0.6766  |
+| MoESR              | x2    |  32.69 / 0.9054 |  32.95 / 0.9056 |  27.29 / 0.8448  |
+| MoESR              | x4    |  28.48 / 0.7805 |  28.57 / 0.7795 |  23.62 / 0.6766  |
 
 ## Acknowledgement
 
