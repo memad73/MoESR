@@ -57,7 +57,7 @@ class options:
         self.conf.ise_path = os.path.join(self.conf.checkpoints_dir, 'x%d'%(self.conf.scale), 'ISE.pt')
         self.conf.ken_path = os.path.join(self.conf.checkpoints_dir, 'x%d'%(self.conf.scale), 'KEN.pt')
         
-        print('*' * 60 + '\nRunning EnsSR ...')
+        print('*' * 60 + '\nRunning MoESR ...')
         print('input image: \'%s\'' %self.conf.input_image_path)
         print('grand-truth image: \'%s\'' %self.conf.gt_path)
         print('real image: \'%r\'' %self.conf.real)
