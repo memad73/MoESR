@@ -1,4 +1,4 @@
-name: EnsSR
+name: MoESR
 channels:
   - pytorch
   - conda-forge
