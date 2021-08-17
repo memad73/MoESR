@@ -11,7 +11,7 @@ import tqdm
 
 
 
-class EnsSR:
+class MoESR:
             
     def __init__(self, conf):
         self.conf = conf
@@ -22,8 +22,8 @@ class EnsSR:
         
         self.in_img_t= util.im2tensor(self.in_img)
         
-        # Load models in the ensemble
-        self.ensemble_models = torch.load(self.conf.sr_networks_path)
+        # Load weights of experts
+        self.experts = torch.load(self.conf.sr_networks_path)
     
     
     def estimate_kernel(self):       
@@ -43,7 +43,7 @@ class EnsSR:
           
         errs = []
         
-        # Loop over all SR networks in the ensemble
+        # Loop over all experts
         for lambda_1 in self.conf.lambda_set:
             for lambda_2 in self.conf.lambda_set:
                 for theta in self.conf.theta_set:
@@ -70,13 +70,13 @@ class EnsSR:
                         model_theta = np.pi - theta
                         I = self.in_img_t.flip(3)
                     
-                    # Load weights for SR network
+                    # Load weights of expert
                     model_id = 'U_%.2f_%.2f_%.2f'%(lambda_1, lambda_2, model_theta)
-                    U1.load_state_dict(self.ensemble_models[model_id][0])
+                    U1.load_state_dict(self.experts[model_id][0])
                     if self.conf.scale == 4:
-                        U2.load_state_dict(self.ensemble_models[model_id][1])
+                        U2.load_state_dict(self.experts[model_id][1])
                     
-                    # Run SR network
+                    # Run expert
                     with torch.no_grad():
                         O = U1(I)
                         if self.conf.scale == 4:
@@ -152,11 +152,11 @@ class EnsSR:
         if lambda_1 == lambda_2:
             model_theta = 0
             
-        # Load weights for SR network
+        # Load weights for expert
         model_id = 'U_%.2f_%.2f_%.2f'%(lambda_1, lambda_2, model_theta)
-        self.U1.load_state_dict(self.ensemble_models[model_id][0])
+        self.U1.load_state_dict(self.experts[model_id][0])
         if self.conf.scale == 4:
-            self.U2.load_state_dict(self.ensemble_models[model_id][1])
+            self.U2.load_state_dict(self.experts[model_id][1])
         
         # Instead of rotate/flip the LR image, we rotate/flip the network weights
         if theta < np.pi/4:
