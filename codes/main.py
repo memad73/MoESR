@@ -1,6 +1,6 @@
 import os
 from options import options
-from EnsSR import EnsSR
+from MoESR import MoESR
 import numpy as np
 
 
@@ -12,12 +12,12 @@ def main():
     log_f = open(os.path.join(opt.conf.out_dir, 'log.txt'),'w')
     psnrs = []
     
-    # Run EnsSR on all images in the input directory
+    # Run MoESR on all images in the input directory
     for img_name in sorted(os.listdir(opt.conf.in_dir)):   #['img_%03d.png'%(i) for i in range(1, 11)]:
         if img_name.endswith(".png"):
             conf = opt.get_config(img_name)
             
-            model = EnsSR(conf)
+            model = MoESR(conf)
             model.estimate_kernel()
             model.finetune_network()
             psnr = model.eval()
